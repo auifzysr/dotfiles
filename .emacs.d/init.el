@@ -1,12 +1,12 @@
 ;; #####################
 ;; initial setup
 ;; #####################
+;; install packages
 (require 'cl)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (setq package-enable-at-startup nil)
 (package-initialize)
-
 (setq dotfiles-packages-list
       '(
         helm
@@ -17,7 +17,6 @@
         company-go
         flycheck
         ))
-
 (defun dotfiles-auto-install-packages ()
   (package-refresh-contents)
   (mapc #'(lambda (package)
@@ -72,7 +71,7 @@
 (add-hook 'go-mode-hook
           (lambda()
            (add-hook 'before-save-hook' 'gofmt-before-save)
-           (local-set-key (kbd "M-.") 'godef-jump)
+           (local-set-key (kbd "\M-.") 'godef-jump)
            (set (make-local-variable 'company-backends) '(company-go))
            (company-mode)
            (setq indent-tabs-mode nil)  ; use tab
@@ -81,7 +80,7 @@
            ))
 
 ;; configure gtags-mode
-(add-to-list 'load-path "/usr/bin/gtags")
+(add-to-list 'load-path "/usr/local/share/gtags")
 (autoload 'gtags-mode "gtags" "" t)
 (setq gtags-mode-hook
       '(lambda ()
