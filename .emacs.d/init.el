@@ -117,6 +117,10 @@
 (color-theme-initialize)
 (color-theme-billw)
 
+;; column-marker
+(require 'column-marker)
+(global-set-key [?\C-c ?m] 'column-marker-1)
+
 ;; load twilight-theme
 ;(load-theme 'twilight t)
 
