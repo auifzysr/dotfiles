@@ -40,7 +40,8 @@
 		 	(normal-top-level-add-subdirs-to-load-path))))))
 
 ;add dir and subdir to load-path
-(add-to-load-path "elpa" "elisp")
+;(add-to-load-path "elpa" "elisp")
+(add-to-load-path "elpa")
 
 ;;common clipboard
 (setq x-select-enable-clipboard t)
