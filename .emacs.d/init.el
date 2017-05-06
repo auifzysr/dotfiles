@@ -1,4 +1,33 @@
 ;; #####################
+;; initial setup
+;; #####################
+(require 'cl)
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(setq package-enable-at-startup nil)
+(package-initialize)
+
+(setq dotfiles-packages-list
+      '(
+        helm
+        helm-smex
+        color-theme
+        twilight-theme
+        mozc
+        company-go
+        flycheck
+        ))
+
+(defun dotfiles-auto-install-packages ()
+  (package-refresh-contents)
+  (mapc #'(lambda (package)
+            (unless (package-installed-p package)
+              (package-install package)))
+        dotfiles-packages-list)
+  )
+(dotfiles-auto-install-packages)
+
+;; #####################
 ; system configurations
 ;; #####################
 (defun add-to-load-path (&rest paths)
@@ -11,8 +40,7 @@
 		 	(normal-top-level-add-subdirs-to-load-path))))))
 
 ;add dir and subdir to load-path
-(add-to-load-path "elisp" "elpa")
-;(load "~/.emacs.d/elisp/twilight-theme.el")
+(add-to-load-path "elpa" "elisp")
 
 ;;common clipboard
 (setq x-select-enable-clipboard t)
