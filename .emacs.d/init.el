@@ -99,7 +99,7 @@
 (add-hook 'go-mode-hook
           (lambda()
            (add-hook 'before-save-hook' 'gofmt-before-save)
-           (local-set-key (kbd "\M-.") 'godef-jump)
+           (local-set-key (kbd "\M-t") 'godef-jump) ; doesn't work so far
            (set (make-local-variable 'company-backends) '(company-go))
            (company-mode)
            (setq indent-tabs-mode nil)  ; use tab
