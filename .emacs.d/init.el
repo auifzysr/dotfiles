@@ -13,7 +13,6 @@
         helm-smex
         helm-gtags
         color-theme
-        twilight-theme
         mozc
         company-go
         flycheck
@@ -40,7 +39,6 @@
 		 	(normal-top-level-add-subdirs-to-load-path))))))
 
 ;add dir and subdir to load-path
-;(add-to-load-path "elpa" "elisp")
 (add-to-load-path "elpa")
 
 ;;common clipboard
@@ -93,8 +91,6 @@
 (require 'column-marker)
 (global-set-key [?\C-c ?m] 'column-marker-1)
 
-;; load twilight-theme
-;(load-theme 'twilight t)
 ;; load and configure
 (require 'go-mode)
 (require 'company-go)
