@@ -11,6 +11,7 @@
       '(
         helm
         helm-smex
+        helm-gtags
         color-theme
         twilight-theme
         mozc
@@ -63,35 +64,6 @@
 ;; path to Go and Go packages
 (add-to-list 'exec-path (expand-file-name "/usr/local/go/bin/"))
 (add-to-list 'exec-path (expand-file-name "/home/aci0as4n/.local/go/bin"))
-;; load and configure
-(require 'go-mode)
-(require 'company-go)
-(add-hook 'go-mode-hook 'company-mode)
-(add-hook 'go-mode-hook 'flycheck-mode)
-(add-hook 'go-mode-hook
-          (lambda()
-           (add-hook 'before-save-hook' 'gofmt-before-save)
-           (local-set-key (kbd "\M-.") 'godef-jump)
-           (set (make-local-variable 'company-backends) '(company-go))
-           (company-mode)
-           (setq indent-tabs-mode nil)  ; use tab
-           (setq c-basic-offset 4)      ; set tab-width to 4
-           (setq tab-width 4)
-           ))
-
-;; configure gtags-mode
-(add-to-list 'load-path "/usr/local/share/gtags")
-(autoload 'gtags-mode "gtags" "" t)
-(setq gtags-mode-hook
-      '(lambda ()
-         (local-set-key "\M-t" 'gtags-find-tag) ;jump to the function decl.
-         (local-set-key "\M-r" 'gtags-find-rtag) ;jump to the function ref.
-         (local-set-key "\M-s" 'gtags-find-symbol) ;jump to the variable decl.
-         (local-set-key "\C-t" 'gtags-pop-stack) ;go back to the previous buf.
-         ))
-(add-hook 'c-mode-hook 'gtags-mode)
-(add-hook 'c++-mode-hook 'gtags-mode)
-(add-hook 'go-mode-hook 'gtags-mode)
 
 ;; #####################
 ;; enable packages
@@ -123,6 +95,49 @@
 
 ;; load twilight-theme
 ;(load-theme 'twilight t)
+;; load and configure
+(require 'go-mode)
+(require 'company-go)
+(add-hook 'go-mode-hook 'company-mode)
+(add-hook 'go-mode-hook 'flycheck-mode)
+(add-hook 'go-mode-hook
+          (lambda()
+           (add-hook 'before-save-hook' 'gofmt-before-save)
+           (local-set-key (kbd "\M-.") 'godef-jump)
+           (set (make-local-variable 'company-backends) '(company-go))
+           (company-mode)
+           (setq indent-tabs-mode nil)  ; use tab
+           (setq c-basic-offset 4)      ; set tab-width to 4
+           (setq tab-width 4)
+           ))
+
+;; configure gtags-mode
+(add-to-list 'load-path "/usr/local/share/gtags")
+(autoload 'gtags-mode "gtags" "" t)
+;; (setq gtags-mode-hook
+;;       '(lambda ()
+;;          (local-set-key "\M-t" 'gtags-find-tag) ;jump to the function decl.
+;;          (local-set-key "\M-r" 'gtags-find-rtag) ;jump to the function ref.
+;;          (local-set-key "\M-s" 'gtags-find-symbol) ;jump to the variable decl.
+;;          (local-set-key "\C-t" 'gtags-pop-stack) ;go back to the previous buf.
+;;          ))
+;; (add-hook 'c-mode-hook 'gtags-mode)
+;; (add-hook 'c++-mode-hook 'gtags-mode)
+;; (add-hook 'go-mode-hook 'gtags-mode)
+
+(require 'helm-gtags)
+(add-hook 'go-mode-hook (lambda () (helm-gtags-mode)))
+(add-hook 'python-mode-hook (lambda () (helm-gtags-mode)))
+(add-hook 'ruby-mode-hook (lambda () (helm-gtags-mode)))
+(setq helm-gtags-path-style 'root)
+(setq helm-gtags-auto-update t)
+(add-hook 'helm-gtags-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "M-g") 'helm-gtags-dwim)
+             (local-set-key (kbd "M-s") 'helm-gtags-show-stack)
+             (local-set-key (kbd "M-p") 'helm-gtags-previous-history)
+             (local-set-key (kbd "M-n") 'helm-gtags-next-history)
+             ))
 
 ;; #####################
 ;; key-bind configurations
@@ -220,9 +235,6 @@
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
 
-;; delete trailing space
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
 ;; cua-mode : rectangle select
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
@@ -233,3 +245,6 @@
 
 ;; charcode
 (set-default-coding-systems 'utf-8)
+
+;; delete trailing space
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
