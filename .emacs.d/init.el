@@ -110,16 +110,6 @@
 ;; configure gtags-mode
 (add-to-list 'load-path "/usr/local/share/gtags")
 (autoload 'gtags-mode "gtags" "" t)
-;; (setq gtags-mode-hook
-;;       '(lambda ()
-;;          (local-set-key "\M-t" 'gtags-find-tag) ;jump to the function decl.
-;;          (local-set-key "\M-r" 'gtags-find-rtag) ;jump to the function ref.
-;;          (local-set-key "\M-s" 'gtags-find-symbol) ;jump to the variable decl.
-;;          (local-set-key "\C-t" 'gtags-pop-stack) ;go back to the previous buf.
-;;          ))
-;; (add-hook 'c-mode-hook 'gtags-mode)
-;; (add-hook 'c++-mode-hook 'gtags-mode)
-;; (add-hook 'go-mode-hook 'gtags-mode)
 
 (require 'helm-gtags)
 (add-hook 'go-mode-hook (lambda () (helm-gtags-mode)))
