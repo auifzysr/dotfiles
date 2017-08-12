@@ -16,6 +16,7 @@
         mozc
         company-go
         flycheck
+	column-marker
         ))
 (defun dotfiles-auto-install-packages ()
   (package-refresh-contents)
