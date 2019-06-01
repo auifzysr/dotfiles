@@ -48,6 +48,11 @@
 ;; let stop to make a backup file
 (setq make-backup-files nil)
 
+;; http://ergoemacs.org/emacs/emacs_set_backup_into_a_directory.html
+(setq auto-save-default nil) ; stop creating #autosave# files
+(setq create-lockfiles nil)
+
+
 ;; tab width
 (custom-set-variables '(tab-width 4))
 
