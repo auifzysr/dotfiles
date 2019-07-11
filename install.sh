@@ -1,9 +1,15 @@
-#!/bin/bash -xe
+#!/bin/bash
+
+set -x
+
+ORIGINAL_DIR=$(pwd)
 
 # .tmux
 cd ~
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
+
+sudo apt -y install zsh
 
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -16,5 +22,4 @@ fi
 # powerlevel9k theme for oh-my-zsh
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
-
-exit 0
+cd $(ORIGINAL_DIR)

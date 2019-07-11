@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/aci0as4n/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -65,7 +65,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source /etc/profile.d/go.sh
+#source /etc/profile.d/go.sh
 
 # User configuration
 
@@ -98,4 +98,4 @@ source /etc/profile.d/go.sh
 alias emacs="emacs -nw"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs status)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator)
-source ~/.fonts/*.sh
+#source ~/.fonts/*.sh

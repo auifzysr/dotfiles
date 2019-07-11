@@ -3,6 +3,7 @@
 - [Powerline](https://github.com/powerline/fonts)
 - [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 - [.tmux](https://github.com/gpakosz/.tmux)
+- [powerlevel9k](https://github.com/bhilburn/powerlevel9k)
 ## Emacs
 See details on .emacs.d/init.el.
 
