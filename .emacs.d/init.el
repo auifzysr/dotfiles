@@ -240,3 +240,10 @@
 
 ;; delete trailing space
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; yaml mode
+;; https://github.com/yoshiki/yaml-mode
+;; http://emacs.rubikitch.com/yaml-mode/
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
+(define-key yaml-mode-map "\C-m" 'newline-and-indent)
