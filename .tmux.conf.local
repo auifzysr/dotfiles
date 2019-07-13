@@ -279,3 +279,4 @@ set -g status-interval 60
 setw -g monitor-activity on
 bind p choose-buffer
 bind P paste-buffer
+bind C-s set-window-option synchronize-panes
