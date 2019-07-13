@@ -110,3 +110,6 @@ alias emacs="emacs -nw"
 #source ~/.fonts/*.sh
 
 source $ZSH/oh-my-zsh.sh
+if [ -z $TMUX ]; then
+    tmux new-session -A -s "default"
+fi
