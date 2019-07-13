@@ -277,3 +277,5 @@ bind 0 kill-pane
 #set -g status-position top
 set -g status-interval 60
 setw -g monitor-activity on
+bind p choose-buffer
+bind P paste-buffer
