@@ -262,9 +262,9 @@ unbind C-a
 unbind C-b
 set -g prefix C-z
 bind C-z send-prefix
-bind - split-window -h
-bind \ split-window -v
-bind - kill-pane
+bind - split-window -v
+bind \ split-window -h
+bind 0 kill-pane
 
 # move status line to top
 #set -g status-position top

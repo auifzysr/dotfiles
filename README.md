@@ -10,3 +10,4 @@ See details on .emacs.d/init.el.
 ## Notes
 - Some system's default fonts do not work with Powerline9k since they do not have triangle characters. Change the system font to like "Monospace Regular" which include those characters.
 - If a character on the terminal is illegible, change the color theme of it.
+- When browsing `.tmux.conf.local`, do not scroll the file down to the bottom using `C->` otherwise the content display goes wrong somehow.
