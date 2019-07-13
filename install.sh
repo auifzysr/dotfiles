@@ -22,4 +22,7 @@ fi
 # powerlevel9k theme for oh-my-zsh
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
+git clone https://github.com/caiogondim/bullet-train.zsh
+cp bullet-train.zsh/bullet-train.zsh-theme ~/.oh-my-zsh/themes/
+
 cd $(ORIGINAL_DIR)

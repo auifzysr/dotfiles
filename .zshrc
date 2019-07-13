@@ -4,14 +4,23 @@
 export TERM="xterm-256color"
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=/home/aci0as4n/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="agnoster"
+
+#ZSH_THEME="bullet-train"
+
 ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs status root_indicator)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator)
+#POWERLEVEL9K_DIR_PATH_ABSOLUTE=true
+#POWERLEVEL9K_HOME_FOLDER_ABBREVIATION=true
+# POWERLEVEL9K_DIR_PATH_HIGHLIGHT_FOREGROUND="#000000"
+# POWERLEVEL9K_DIR_PATH_HIGHLIGHT_BOLD=true
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -66,7 +75,7 @@ plugins=(
   git
 )
 
-source $ZSH/oh-my-zsh.sh
+
 #source /etc/profile.d/go.sh
 
 # User configuration
@@ -98,6 +107,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias emacs="emacs -nw"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs status)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator)
 #source ~/.fonts/*.sh
+
+source $ZSH/oh-my-zsh.sh
