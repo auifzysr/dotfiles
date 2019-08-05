@@ -49,6 +49,18 @@
 ;add dir and subdir to load-path
 (add-to-load-path "elpa")
 
+; gtags
+(add-to-list 'load-path "/usr/local/share/gtags")
+(autoload 'gtags-mode "gtags" "" t)
+(setq gtags-mode-hook
+      '(lambda ()
+         (local-set-key "\M-t" 'gtags-find-tag) ; jump to the function definition
+         (local-set-key "\M-r" 'gtags-find-rtag) ; jump to the function reference
+         (local-set-key "\M-s" 'gtags-find-symbol) ; jump to the variable definition
+         (local-set-key "\C-t" 'gtags-pop-stack) ; go back to the previous buffer
+         ))
+(add-hook 'python-mode-hook 'gtags-mode)
+
 ;;common clipboard
 (setq x-select-enable-clipboard t)
 
@@ -83,8 +95,9 @@
  '(frame-background-mode (quote light))
  '(package-selected-packages
    (quote
-    (terraform-mode color-theme-sanityinc-tomorrow mozc helm-smex helm-gtags flycheck company-go color-theme)))
+    (exec-path-from-shell dockerfile-mode terraform-mode color-theme-sanityinc-tomorrow mozc helm-smex helm-gtags flycheck company-go color-theme)))
  '(tab-width 4)
+ '(terraform-indent-level 4)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
@@ -108,8 +121,7 @@
      (360 . "#718c00"))))
  '(vc-annotate-very-old-color nil)
  '(window-divider-mode nil))
-(custom-set-variables
- '(terraform-indent-level 4))
+
 
 ;; delete initial scratch messages
 (setq initial-scratch-message "")
@@ -149,6 +161,7 @@
 ;; (require 'color-theme)
 ;(color-theme-arjen)
 (require 'color-theme-sanityinc-tomorrow)
+(load-theme 'manoj-dark)
 
 ;; column-marker
 ;; (require 'column-marker)
@@ -308,3 +321,4 @@
  ;; If there is more than one, they won't work right.
  )
 (put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
