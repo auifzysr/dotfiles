@@ -12,3 +12,4 @@ See details on .emacs.d/init.el.
 - If a character on the terminal is illegible, change the color theme of it.
 - When browsing `.tmux.conf.local`, do not scroll the file down to the bottom using `C->` otherwise the content display goes wrong somehow.
 - Overwrite the powerlevel9k definition to `~/.oh-my-zsh/custom/themes` to configure the current directory indicator's color.
+- To enable it for root, `sudo ln -sf $HOME/.zshrc /root/.zshrc` and `sudo chsh`
