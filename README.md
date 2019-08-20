@@ -18,3 +18,4 @@ https://github.com/tmux-plugins/tpm
 - When browsing `.tmux.conf.local`, do not scroll the file down to the bottom using `C->` otherwise the content display goes wrong somehow.
 - Overwrite the powerlevel9k definition to `~/.oh-my-zsh/custom/themes` to configure the current directory indicator's color.
 - To enable it for root, `sudo ln -sf $HOME/.zshrc /root/.zshrc` and `sudo chsh`
+- Installation of powerline fonts sometimes does not work. Change the terminal's font configuration to `monospace` in that case.
