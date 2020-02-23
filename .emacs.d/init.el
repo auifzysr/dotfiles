@@ -121,8 +121,10 @@
 ;           (add-hook 'before-save-hook' 'gofmt-before-save)
 ;           (local-set-key (kbd "\M-t") 'godef-jump) ; doesn't work so far
 ;           (set (make-local-variable 'company-backends) '(company-go))
-;           (company-mode)
-           (add-hook 'before-save-hook 'gofmt-before-save)
+                                        ;           (company-mode)
+            (setq gofmt-command "goimports")
+            (add-hook 'before-save-hook 'gofmt-before-save)
+
            (setq indent-tabs-mode nil)  ; use tab
            (setq tab-width 4)      ; set tab-width to 4
            ))
