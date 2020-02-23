@@ -2,41 +2,34 @@
 ;; initial setup
 ;; #####################
 ;; install packages
-;(require 'cl)
-;(require 'package)
-;(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-;(setq package-enable-at-startup nil)
-;(package-initialize)
-;; (setq dotfiles-packages-list
-;;       '(
-;;         helm
-;;         helm-smex
-;;         helm-gtags
-;;         color-theme
-;;         mozc
-;;         company-go
-;;         flycheck
-;;         column-marker
-;;         ))
-;; (defun dotfiles-auto-install-packages ()
-;;   (package-refresh-contents)
-;;   (mapc #'(lambda (package)
-;;             (unless (package-installed-p package)
-;;               (package-install package)))
-;;         dotfiles-packages-list)
-;;   )
-;; (dotfiles-auto-install-packages)
+(require 'cl)
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(setq package-enable-at-startup nil)
+(package-initialize)
+(setq dotfiles-packages-list
+      '(
+        helm
+        helm-smex
+        helm-gtags
+        color-theme
+        mozc
+        company-go
+        flycheck
+        column-marker
+        ))
+(defun dotfiles-auto-install-packages ()
+  (package-refresh-contents)
+  (mapc #'(lambda (package)
+            (unless (package-installed-p package)
+              (package-install package)))
+        dotfiles-packages-list)
+  )
+;(dotfiles-auto-install-packages)
 
 ;; #####################
 ; system configurations
 ;; #####################
-(package-initialize)
-(setq package-archives
-      '(("gnu" . "http://elpa.gnu.org/packages/")
-        ("melpa" . "http://melpa.org/packages/")
-        ("org" . "http://orgmode.org/elpa/")))
-
-
 (defun add-to-load-path (&rest paths)
   (let (path)
 	(dolist (path paths paths)
@@ -49,31 +42,17 @@
 ;add dir and subdir to load-path
 (add-to-load-path "elpa")
 
-; gtags
-(add-to-list 'load-path "/usr/local/share/gtags")
-(autoload 'gtags-mode "gtags" "" t)
-(setq gtags-mode-hook
-      '(lambda ()
-         (local-set-key "\M-t" 'gtags-find-tag) ; jump to the function definition
-         (local-set-key "\M-r" 'gtags-find-rtag) ; jump to the function reference
-         (local-set-key "\M-s" 'gtags-find-symbol) ; jump to the variable definition
-         (local-set-key "\C-t" 'gtags-pop-stack) ; go back to the previous buffer
-         ))
-(add-hook 'python-mode-hook 'gtags-mode)
-
 ;;common clipboard
 (setq x-select-enable-clipboard t)
 
 ;; let stop to make a backup file
 (setq make-backup-files nil)
 
-
-
-
-;; http://ergoemacs.org/emacs/emacs_set_backup_into_a_directory.html
-(setq auto-save-default nil) ; stop creating #autosave# files
+;; stop creating #autosave# files
+(setq auto-save-default nil)
+;; stop creating temporary symbolic link file named "#something"
 (setq create-lockfiles nil)
-
+;; http://ergoemacs.org/emacs/emacs_set_backup_into_a_directory.html
 
 ;; tab width
 (custom-set-variables
@@ -81,125 +60,90 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector
-   (vector "#d6d6d6" "#c82829" "#718c00" "#eab700" "#4271ae" "#8959a8" "#3e999f" "#4d4d4c"))
- '(beacon-color "#c82829")
- '(custom-enabled-themes (quote (sanityinc-tomorrow-night)))
- '(custom-safe-themes
-   (quote
-    ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" default)))
- '(fci-rule-color "#d6d6d6")
- '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
- '(frame-background-mode (quote light))
  '(package-selected-packages
    (quote
-    (exec-path-from-shell dockerfile-mode terraform-mode color-theme-sanityinc-tomorrow mozc helm-smex helm-gtags flycheck company-go color-theme)))
- '(tab-width 4)
- '(terraform-indent-level 4)
- '(vc-annotate-background nil)
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#c82829")
-     (40 . "#f5871f")
-     (60 . "#eab700")
-     (80 . "#718c00")
-     (100 . "#3e999f")
-     (120 . "#4271ae")
-     (140 . "#8959a8")
-     (160 . "#c82829")
-     (180 . "#f5871f")
-     (200 . "#eab700")
-     (220 . "#718c00")
-     (240 . "#3e999f")
-     (260 . "#4271ae")
-     (280 . "#8959a8")
-     (300 . "#c82829")
-     (320 . "#f5871f")
-     (340 . "#eab700")
-     (360 . "#718c00"))))
- '(vc-annotate-very-old-color nil)
- '(window-divider-mode nil))
-
+    (yaml-mode terraform-mode mozc helm-smex helm-gtags flycheck emamux company-go column-marker color-theme)))
+ '(tab-width 4))
+(setq-default indent-tabs-mode nil)
 
 ;; delete initial scratch messages
 (setq initial-scratch-message "")
 (setq inhibit-startup-screen t)
 
 ;; enable MELPA
-;; (package-initialize)
-;; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 ;; configure golang environment
 ;; path to Go and Go packages
 (add-to-list 'exec-path (expand-file-name "/usr/local/go/bin/"))
-(add-to-list 'exec-path (expand-file-name "/home/aci0as4n/.local/go/bin"))
+;;(add-to-list 'exec-path (expand-file-name "/home/aci0as4n/.local/go/bin"))
+(add-to-list 'exec-path (expand-file-name "/home/aci0as4n/.go/go/bin"))
 
 ;; #####################
 ;; enable packages
 ;; #####################
 
 ;; mozc
-;; (require 'mozc)
+;; enabling this package causes some golang charcode problems.
+;; and now this is not needed to input japanese character on Emacs.
+;;(require 'mozc)
 ;; (set-language-environment "Japanese")
 ;; (setq default-input-method "japanese-mozc")
 ;; (global-set-key (kbd "C-c C-o") 'toggle-input-method)
 ;; (setq mozc-candidate-style 'overlay)
 
+
 ;; helm
-;; (require 'helm-config)
-;; (helm-mode t)
+(require 'helm-config)
+(helm-mode t)
 
 ;; helm-smex
 ;(require 'smex)
 ;(smex-initialize)
 
 ;;colortheme
-;(color-theme-initialize)
-;(load-theme 'arjen)
-;; (require 'color-theme)
-;(color-theme-arjen)
-(require 'color-theme-sanityinc-tomorrow)
-(load-theme 'manoj-dark)
+(require 'color-theme)
+(color-theme-initialize)
+(color-theme-arjen)
 
 ;; column-marker
-;; (require 'column-marker)
-;; (global-set-key [?\C-c ?m] 'column-marker-1)
+(require 'column-marker)
+(global-set-key [?\C-c ?m] 'column-marker-1)
 
 ;; load and configure
-;; (require 'go-mode)
-;; (require 'company-go)
-;; (add-hook 'go-mode-hook 'company-mode)
-;; (add-hook 'go-mode-hook 'flycheck-mode)
-;; (add-hook 'go-mode-hook
-;;           (lambda()
-;;            (add-hook 'before-save-hook' 'gofmt-before-save)
-;;            (local-set-key (kbd "\M-t") 'godef-jump) ; doesn't work so far
-;;            (set (make-local-variable 'company-backends) '(company-go))
-;;            (company-mode)
-;;            (setq indent-tabs-mode nil)  ; use tab
-;;            (setq c-basic-offset 4)      ; set tab-width to 4
-;;            (setq tab-width 4)
-;;            ))
+(require 'go-mode)
+(require 'company-go)
+(add-hook 'go-mode-hook 'company-mode)
+(add-hook 'go-mode-hook 'flycheck-mode)
+(add-hook 'go-mode-hook
+          (lambda()
+;           (add-hook 'before-save-hook' 'gofmt-before-save)
+;           (local-set-key (kbd "\M-t") 'godef-jump) ; doesn't work so far
+;           (set (make-local-variable 'company-backends) '(company-go))
+;           (company-mode)
+           (add-hook 'before-save-hook 'gofmt-before-save)
+           (setq indent-tabs-mode nil)  ; use tab
+           (setq tab-width 4)      ; set tab-width to 4
+           ))
 
 ;; configure gtags-mode
 (add-to-list 'load-path "/usr/local/share/gtags")
 (autoload 'gtags-mode "gtags" "" t)
 
-;; (require 'helm-gtags)
-;; (add-hook 'go-mode-hook (lambda () (helm-gtags-mode)))
-;; (add-hook 'python-mode-hook (lambda () (helm-gtags-mode)))
-;; (add-hook 'ruby-mode-hook (lambda () (helm-gtags-mode)))
-;; (setq helm-gtags-path-style 'root)
-;; (setq helm-gtags-auto-update t)
-;; (add-hook 'helm-gtags-mode-hook
-;;           '(lambda ()
-;;              (local-set-key (kbd "M-g") 'helm-gtags-dwim)
-;;              (local-set-key (kbd "M-s") 'helm-gtags-show-stack)
-;;              (local-set-key (kbd "M-p") 'helm-gtags-previous-history)
-;;              (local-set-key (kbd "M-n") 'helm-gtags-next-history)
-;;              ))
+(require 'helm-gtags)
+(add-hook 'go-mode-hook (lambda () (helm-gtags-mode)))
+(add-hook 'python-mode-hook (lambda () (helm-gtags-mode)))
+(add-hook 'ruby-mode-hook (lambda () (helm-gtags-mode)))
+(setq helm-gtags-path-style 'root)
+(setq helm-gtags-auto-update t)
+(add-hook 'helm-gtags-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "M-g") 'helm-gtags-dwim)
+             (local-set-key (kbd "M-s") 'helm-gtags-show-stack)
+             (local-set-key (kbd "M-p") 'helm-gtags-previous-history)
+             (local-set-key (kbd "M-n") 'helm-gtags-next-history)
+             ))
 
 ;; #####################
 ;; key-bind configurations
@@ -227,10 +171,10 @@
 (menu-bar-mode -1)
 
 ;; display line number
-;(global-linum-mode t)
+;;(global-linum-mode t)
 ;; (set-face-attribute 'linum nil
 ;;                     :foreground "#800"
-;;                     :height 0.9)
+;;                     :height 1.0)
 
 ;; line number format
 (setq linum-format "%4d")
@@ -254,15 +198,16 @@
 (add-to-list 'default-frame-alist '(alpha 90 90))
 
 ;; frame size
-(add-to-list 'default-frame-alist '(height . 72))
-(add-to-list 'default-frame-alist '(width . 120))
+;; now that emacs would be used only in a terminal
+;; (add-to-list 'default-frame-alist '(height . 72))
+;; (add-to-list 'default-frame-alist '(width . 120))
 
 ;; #####################
 ;; editing configurations
 ;; #####################
 
 ;;charsize
-;(set-face-attribute 'default nil :height 80)
+(set-face-attribute 'default nil :height 100)
 
 ;; emphasize inside of the parenthesis
 (show-paren-mode t)
@@ -280,7 +225,7 @@
 (set-face-background 'trailing-whitespace "#b14770")
 
 ;; deal with a tab as a space
-(setq-default indent-tabs-mode nil)
+;;(setq-default indent-tabs-mode nil)
 
 ;; line spacing
 (setq-default line-spacing 0)
@@ -310,15 +255,16 @@
 
 ;; delete trailing space
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(put 'upcase-region 'disabled nil)
 
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
-(define-key yaml-mode-map "\C-m" 'newline-and-indent)
+
+;; terraform mode
+(add-hook 'terraform-mode-hook #'terraform-format-on-save-mode)
+;; (custom-set-variables
+;;  '(terraform-indent-level 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
