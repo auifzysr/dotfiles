@@ -110,6 +110,10 @@ plugins=(
 alias emacs="emacs -nw"
 #source ~/.fonts/*.sh
 
+if [ -n "$GOPATH" ]; then
+    export PATH=$PATH:$GOPATH/bin
+fi
+
 source $ZSH/oh-my-zsh.sh
 if [ -z $TMUX ]; then
     tmux new-session -A -s "default"
