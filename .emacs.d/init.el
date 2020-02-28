@@ -112,21 +112,18 @@
 (global-set-key [?\C-c ?m] 'column-marker-1)
 
 ;; load and configure
+; According to the official doc, gofmt "uses tabs for indentation".
+; Not necessarily recommended to use whitespaces instead of tabs.
+; https://golang.org/cmd/gofmt/
 (require 'go-mode)
 (require 'company-go)
 (add-hook 'go-mode-hook 'company-mode)
 (add-hook 'go-mode-hook 'flycheck-mode)
 (add-hook 'go-mode-hook
           (lambda()
-;           (add-hook 'before-save-hook' 'gofmt-before-save)
-;           (local-set-key (kbd "\M-t") 'godef-jump) ; doesn't work so far
-;           (set (make-local-variable 'company-backends) '(company-go))
-                                        ;           (company-mode)
             (setq gofmt-command "goimports")
             (add-hook 'before-save-hook 'gofmt-before-save)
-
-           (setq indent-tabs-mode nil)  ; use tab
-           (setq tab-width 4)      ; set tab-width to 4
+            (setq tab-width 4)
            ))
 
 ;; configure gtags-mode
