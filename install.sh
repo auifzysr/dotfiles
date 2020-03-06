@@ -6,8 +6,11 @@ ORIGINAL_DIR=$(pwd)
 
 # .tmux
 cd ~
-ln -s -f .tmux/.tmux.conf
-cp .tmux/.tmux.conf.local .
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# may fix this later to make links
+cp .tmux.conf ~
+cp .tmux.conf.local ~
 
 sudo apt -y install zsh
 
@@ -15,7 +18,7 @@ sudo apt -y install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # powerline fonts
-if [ -f /etc/os_release ] && [ $(grep -E "[Dd]ebian" /etc/os_release) ]; then
+if [ -f /etc/os_release ] && [ $(grep -E "[Dd]ebian|Ubuntu" /etc/os_release) ]; then
     sudo apt install fonts-powerline
 fi
 
@@ -25,4 +28,4 @@ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/theme
 git clone https://github.com/caiogondim/bullet-train.zsh
 cp bullet-train.zsh/bullet-train.zsh-theme ~/.oh-my-zsh/themes/
 
-cd $(ORIGINAL_DIR)
+cd ${ORIGINAL_DIR}

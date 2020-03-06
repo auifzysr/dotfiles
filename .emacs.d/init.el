@@ -12,11 +12,10 @@
         helm
         helm-smex
         helm-gtags
-        color-theme
+        color-theme-modern
         mozc
         company-go
         flycheck
-        column-marker
         ))
 (defun dotfiles-auto-install-packages ()
   (package-refresh-contents)
@@ -62,7 +61,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yaml-mode terraform-mode mozc helm-smex helm-gtags flycheck emamux company-go column-marker color-theme)))
+    (yaml-mode terraform-mode mozc helm-smex helm-gtags flycheck emamux company-go color-theme-modern)))
  '(tab-width 4))
 (setq-default indent-tabs-mode nil)
 
@@ -102,14 +101,9 @@
 ;(require 'smex)
 ;(smex-initialize)
 
-;;colortheme
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-arjen)
-
-;; column-marker
-(require 'column-marker)
-(global-set-key [?\C-c ?m] 'column-marker-1)
+;;color-theme
+(load-theme 'arjen t t)
+(enable-theme 'arjen)
 
 ;; load and configure
 ; According to the official doc, gofmt "uses tabs for indentation".
