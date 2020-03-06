@@ -118,3 +118,4 @@ source $ZSH/oh-my-zsh.sh
 if [ -z $TMUX ]; then
     tmux new-session -A -s "default"
 fi
+if [ /usr/bin/kubectl ]; then source <(kubectl completion zsh); fi
