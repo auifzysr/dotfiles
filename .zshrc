@@ -110,12 +110,11 @@ plugins=(
 alias emacs="emacs -nw"
 #source ~/.fonts/*.sh
 
-# Since the default golang version Debian/Ubuntu provides is 1.11.x,
-# it has to declare this variable explicitly to use `go mod`.
+# Since the default golang's version of Debian/Ubuntu is still 1.11.x,
+# there need to explicitly pick out the option to use `go mod`.
 export GO111MODULE=on
-if [ -n "$GOPATH" ]; then
-    export PATH=$PATH:$GOPATH/bin
-fi
+export GOPATH=$HOME/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 source $ZSH/oh-my-zsh.sh
 if [ -z $TMUX ]; then
