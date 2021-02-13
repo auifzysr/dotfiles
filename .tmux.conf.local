@@ -267,7 +267,7 @@ set -g mode-keys emacs
 set -gu prefix2
 unbind C-a
 unbind C-b
-set -g prefix C-z
+set -g prefix C-t
 #bind C-z send-prefix
 bind - split-window -v
 bind \ split-window -h
