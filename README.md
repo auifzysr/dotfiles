@@ -19,3 +19,4 @@ https://github.com/tmux-plugins/tpm
 - Overwrite the powerlevel9k definition to `~/.oh-my-zsh/custom/themes` to configure the current directory indicator's color.
 - To enable it for root, `sudo ln -sf $HOME/.zshrc /root/.zshrc` and `sudo chsh`
 - Installation of powerline fonts sometimes does not work. Change the terminal's font configuration to `monospace` in that case.
+- On Windows Terminal, additionally needs to install [Cascadia Code PL Font](https://github.com/microsoft/cascadia-code/releases) to render the Powerline prompt.
