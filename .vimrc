@@ -12,6 +12,7 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'ap/vim-buftabline'
+  Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 call plug#end()
 
 set nopaste
@@ -51,3 +52,4 @@ augroup NERD
   nmap <F1> :NERDTreeToggle<CR>
 augroup END
 
+autocmd BufWritePre *.js Prettier
