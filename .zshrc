@@ -74,6 +74,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator)
 plugins=(
     git
     pipenv
+    virtualenv
 )
 
 
@@ -107,18 +108,24 @@ plugins=(
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias emacs="emacs -nw"
+alias emacs="vim"
 #source ~/.fonts/*.sh
 
-# Since the default golang version Debian/Ubuntu provides is 1.11.x,
-# it has to declare this variable explicitly to use `go mod`.
+# Since the default golang's version of Debian/Ubuntu is still 1.11.x,
+# there need to explicitly pick out the option to use `go mod`.
 export GO111MODULE=on
-if [ -n "$GOPATH" ]; then
-    export PATH=$PATH:$GOPATH/bin
-fi
+export GOPATH=$HOME/go
+#export GOROOT=$HOME/go
+export PATH=$PATH:$HOME/.npm/bin:$HOME/.local/bin:/usr/local/go/bin:$GOPATH/bin
 
+#alias go="/usr/lib/go1.16.4/bin/go"
 source $ZSH/oh-my-zsh.sh
 if [ -z $TMUX ]; then
     tmux new-session -A -s "default"
 fi
 if [ /usr/bin/kubectl ]; then source <(kubectl completion zsh); fi
+alias python="python3"
+alias pip="pip3"
+export EDITOR=vim
+eval "$(direnv hook zsh)"
+
