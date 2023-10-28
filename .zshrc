@@ -120,7 +120,7 @@ export PATH=$PATH:$HOME/.npm/bin:$HOME/.local/bin:/usr/local/go/bin:$GOPATH/bin
 
 #alias go="/usr/lib/go1.16.4/bin/go"
 source $ZSH/oh-my-zsh.sh
-if [ -z $TMUX ]; then
+if [ -z $TMUX ] && [ "$TERM_PROGRAM" != "vscode" ]; then
     tmux new-session -A -s "default"
 fi
 if [ /usr/bin/kubectl ]; then source <(kubectl completion zsh); fi
